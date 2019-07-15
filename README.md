@@ -24,11 +24,10 @@ CTRL-T              # jump back. repeat to go further back
 :h '[option]'       # get specific help about an Option e.g :h 'textwidth'
 :h /                # get specific help about regular expression e.g :h /[
 :h [word] [CTRL-D]  # see matching help entries for "word" e.g: :h word CTRL-D
+:helpc              # close on help window, if there is one
 
-:o [file.txt]       # open a specific file
-:saveas [file.txt]  # save file as
-`:h[elp]` - *open a window and display the help file in read-only mode.*
-`:h[elp] {subject}` - *additionally jump to the tag e.g: :help options*
-`:helpc[lose]` - *close on help window, if there is one*
-`:clo`, `:close`, `CTRL-W_c` - *close the current window*
+#Misc
+:o [file.txt]                   # open a specific file
+:saveas [file.txt]              # save file as
+`:clo`, `:close`, `CTRL-W_c`    # close the current window*
 ```
