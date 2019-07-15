@@ -29,5 +29,5 @@ CTRL-T              # jump back. repeat to go further back
 #Misc
 :o [file.txt]                   # open a specific file
 :saveas [file.txt]              # save file as
-`:clo`, `:close`, `CTRL-W_c`    # close the current window*
+:clo, :close, CTRL-W_c          # close the current window*
 ```
