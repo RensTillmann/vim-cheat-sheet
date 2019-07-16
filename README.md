@@ -61,6 +61,14 @@ Tx	    # single-character search backwards up to letter `x` (stops one character
 gg	    # move to the first line of a file (go to top of file)
 G	    # move to the last line of a file (go to bottom of file)
 7G	    # move to a specific line number, e.g move to line 7 with `7G`
+``	    # go back to previous `mark` (jump back to previous cursor position after a jump was made)
+CTRL-O	    # this command does the same as ```` with the exception it can jump to older positions
+CTRL-I	    # oposite of `CTRL-O` (jump to newer positions)
+<Tab>	    # same as `CTRL-I` (however I and O are next to eachother on the keyboard which is much quicker)
+:jumps	    # gives you a list of `marks` to jump to
+m[a-z]	    # create mark, `ma` creates mark as `a` which you can then jump to with "`a"
+	    # a rule of thumb would be create a mark "s" (start) and a mark "e" (end)
+:marks	    # get a list of marks
 50%	    # move halfway the file e.g: move to 1/4 of a file with 25%
 H	    # move to the first line within the viewport (stands for `Home`)
 M	    # move to the mid line within the viewport (stands for `Middle`)
@@ -74,6 +82,43 @@ CTRL-E	    # one-line scroll DOWN (show `Extra` line)
 CTRL-Y	    # one-line scroll UP
 CTRL-F	    # scroll `Forward` by a whole viewport (except for two lines)
 CTRL-B	    # scroll `Backward` by a whole viewport (except for two lines)
+
+# Making small changes (operator-motion, VISUAL mode and TEXT objects)
+d$ [D]	  # deletes from the cursor to the end of the line (including the last character of the line)
+c$ [C]	  # change to end of line
+y$	  # yank to the end of the line
+dl [x]	  # delete character under the cursor
+cl [s]	  # change one character 
+dh [X]	  # delete character left of the cursor
+cc [S]	  # change a whole line
+yy [Y] 	  # yank the current line
+d4w	  # deletes up to the position where the motion takes the cursor
+d4e	  # deletes up to the position where the motion takes the cursor including that last character 
+c2w	  # deletes a word and puts you in INSERT mode
+dd	  # deletes a line
+y	  # yank (copy) something
+"*yy	 "# copy a line to the clipboard
+yw	  # yank a word (including the white space after a word)
+ye	  # yank a word (excluding the white space after a word)
+y2w	  # yank 2 words
+r	  # replace on character
+4r<Enter> # replaces four characters with one line break
+.	  # repeat last change (works for all changes you make, except for the `u` (undo), `CTRL-R` (redo) and commands that start with a colon `:`
+V	  # starts VISUAL mode and selects the whole line
+CTRL-V	  # starts VISUAL mode in "vertical" mannar (block selection)
+v_o	  # position cursor at the opposite location of the selection vertically (top/bottom)
+v_O	  # position cursor at the opposite location of the selection horizontally (left/right) (on the same line)
+p	  # paste/put back text that was previously deleted with for instance commands like: `d` or `x`
+P	  # same as `p` but puts the text before the cursor
+"*p	 "# paste/put text from the clipboard back into the text
+xp	  # swap 2 characters around e.g: `teh` becomes `the` when cursor is on `e`
+daw	  # deletes a word (Delete A Word)
+cis	  # change a whole sentence (Change Inner Sentence)
+cas	  # same as `cis` but includes the white space after the sentence
+
+@TODO chapter *04.9* Replace mode
+
+# Searching and search patterns
 /	    # search for a specific word `.*[]^%/\?~$` have special meanings, if you want to use them in a search prepend them with a `\`
 	    # use `:set ignorecase` to ignore case, and use `:set noignorecase` to include case
 *	    # grab word under the cursor and use it as the search string (forward whole word searching)
@@ -88,12 +133,17 @@ N	    # to find the previous occurrence
 /\<foo	    # search for words that start with `foo`
 /\<foobar\> # search for whole words that are exactly `foobar`
 	    # NOTE: both `*` and `#` search for whole words only
+/^foobar     # matches the word `foobar` only if it is at the beginning of a line
+/foobar$     # matches the word `foobar` only if it is at the end of a line
+/^foobar$    # matches a single line consisting of `foobar` with nothing else at the start nor end of the line.
+/fo..ar	    # matches a string whose first 2 characters are `fo` whose next 2 characters can be anything and last 2 ar `ar`
 
 # Text manipulation
 i         # inserts a character before the character under the cursor
 a         # append a character after the character under the cursor
 x         # delete a character
 dd        # delete a line
+cc	  # change a line
 o         # create a new empty line below the cursor and puts vim in INSERT mode
 O         # create a new empty line above the cursor and puts vim in INSERT mode
 J         # remove line break at end of current line (join 2 lines together)
@@ -105,4 +155,6 @@ CTRL-R    # redo last change
 :set number 		# display a line number in front of every line
 :set scrolloff=20 	# keeps a few lines of context around the cursor top/bottom
 :set hlsearch		# enable search highlighting
-```
+:nohlsearch		# temporarily disable highlighting for current search (this will not disable it for next searches)
+:set incsearch		# display the search match while still typing
+`
