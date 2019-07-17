@@ -31,6 +31,26 @@ CTRL-T              # pop tag, takes you back to the preceding position (repeat 
 :helpgrep [word]    # search in all help pages (including installed plugins)
 :helpc              # close on help window, if there is one
 
+# Creating, Splitting & Resizing Windows
+Ctrl+w +: 	    # increase height e.g `20 CTRL-w +`
+Ctrl+w -: 	    # decrease height e.g `20 CTRL-w -`
+Ctrl+w >: 	    # increase width e.g `20 CTRL-w >`
+Ctrl+w <: 	    # decrease width e.g `20 CTRL-w <`
+Ctrl+w _: 	    # change height to maximum possible
+Ctrl+w |: 	    # change width of current window e.g `50 CTRL-w |`
+Ctrl+w =: 	    # share same width and height for all windows (equalize)
+
+# Recording and playback commands (Macro's)
+q[a-z]		    # start recording a macro e.g `qa`
+q		    # end recording of a macro e.g `qa`, `^i# include<Esc>j`, `q`
+@a		    # execute a macro
+3@a		    # execute a macro 3 times
+@@	 	    # execute tha last macro that was executed
+
+# Editing a typo in created macro's (register)
+G + o + "ap 	    # go to end of file + create new line + paste/put the contents of the `a` register
+0 + "ay$	    # got to the first character of a line + yank it till the end into the register `a` 
+
 # Misc
 :o [file.txt]                   # open a specific file
 :saveas [file.txt]              # save file as
