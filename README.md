@@ -163,6 +163,8 @@ v_O	  # position cursor at the opposite location of the selection horizontally (
 v_I	  # insert text left of the block selection
 v_A	  # append text right of the block selection
 v_$A	  # append text at the end of each line within the block selection (including short lines)
+v_c	  # change the text within the block selection (puts you in INSERT mode)
+v_C	  # delete the text within the block selection till the end of the line and puts you in INSERT mode
 p	  # paste/put back text that was previously deleted with for instance commands like: `d` or `x`
 P	  # same as `p` but puts the text before the cursor
 "*p	 "# paste/put text from the clipboard back into the text
