@@ -156,6 +156,15 @@ y2w	  # yank 2 words
 r	  # replace on character
 4r<Enter> # replaces four characters with one line break
 .	  # repeat last change (works for all changes you make, except for the `u` (undo), `CTRL-R` (redo) and commands that start with a colon `:`
+p	  # paste/put back text that was previously deleted with for instance commands like: `d` or `x`
+P	  # same as `p` but puts the text before the cursor
+"*p	 "# paste/put text from the clipboard back into the text
+xp	  # swap 2 characters around e.g: `teh` becomes `the` when cursor is on `e`
+daw	  # deletes a word (Delete A Word)
+cis	  # change a whole sentence (Change Inner Sentence)
+cas	  # same as `cis` but includes the white space after the sentence
+
+# Visual mode (making big changes)
 V	  # starts VISUAL mode and selects the whole line
 CTRL-V	  # starts VISUAL mode in "vertical" mannar (block selection)
 v_o	  # position cursor at the opposite location of the selection vertically (top/bottom)
@@ -165,13 +174,14 @@ v_A	  # append text right of the block selection
 v_$A	  # append text at the end of each line within the block selection (including short lines)
 v_c	  # change the text within the block selection (puts you in INSERT mode)
 v_C	  # delete the text within the block selection till the end of the line and puts you in INSERT mode
-p	  # paste/put back text that was previously deleted with for instance commands like: `d` or `x`
-P	  # same as `p` but puts the text before the cursor
-"*p	 "# paste/put text from the clipboard back into the text
-xp	  # swap 2 characters around e.g: `teh` becomes `the` when cursor is on `e`
-daw	  # deletes a word (Delete A Word)
-cis	  # change a whole sentence (Change Inner Sentence)
-cas	  # same as `cis` but includes the white space after the sentence
+v_~	  # toggle text case lowercase/UPPERCASE e.g `foo` would convert to `FOO` and `FOO` to `foo`
+v_U	  # change text to UPPERCASE e.g `Foo` would convert to `FOO`
+v_u	  # change text to lowercase e.g `Foo` would convert to `foo`
+v_r	  # replace all characters with a different e.g `rx` would convert `foo` to `xxx`
+v_>	  # shift/TAB selected text to the right one shift amount `:set shiftwidth=4` (4 spaces)
+v_<	  # shift/TAB selected text to the left one shift amount `:set shiftwidth=4` (4 spaces)
+v_J	  # join all selected lines together and keep the white space
+v_gJ	  # join all selected lines together but remove the white space
 
 # Searching and search patterns
 /	    # search for a specific word `.*[]^%/\?~$` have special meanings, if you want to use them in a search prepend them with a `\`
@@ -212,4 +222,5 @@ CTRL-R    # redo last change
 :set hlsearch		# enable search highlighting
 :nohlsearch		# temporarily disable highlighting for current search (this will not disable it for next searches)
 :set incsearch		# display the search match while still typing
+:set shiftwidth=4	# set shift amount to 4 spaces
 `
