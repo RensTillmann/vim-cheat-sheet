@@ -32,13 +32,14 @@ CTRL-T              # pop tag, takes you back to the preceding position (repeat 
 :helpc              # close on help window, if there is one
 
 # Creating, Splitting & Resizing Windows
-Ctrl+w +: 	    # increase height e.g `20 CTRL-w +`
-Ctrl+w -: 	    # decrease height e.g `20 CTRL-w -`
-Ctrl+w >: 	    # increase width e.g `20 CTRL-w >`
-Ctrl+w <: 	    # decrease width e.g `20 CTRL-w <`
-Ctrl+w _: 	    # change height to maximum possible
-Ctrl+w |: 	    # change width of current window e.g `50 CTRL-w |`
-Ctrl+w =: 	    # share same width and height for all windows (equalize)
+:clo, :close, CTRL-W_c  # close the current window
+Ctrl+w +: 	    	# increase height e.g `20 CTRL-w +`
+Ctrl+w -: 	    	# decrease height e.g `20 CTRL-w -`
+Ctrl+w >:	 	# increase width e.g `20 CTRL-w >`
+Ctrl+w <: 		# decrease width e.g `20 CTRL-w <`
+Ctrl+w _: 		# change height to maximum possible
+Ctrl+w |: 		# change width of current window e.g `50 CTRL-w |`
+Ctrl+w =:		# share same width and height for all windows (equalize)
 
 # Recording and playback commands (Macro's)
 q[a-z]		    # start recording a macro e.g `qa`
@@ -51,10 +52,41 @@ q		    # end recording of a macro e.g `qa`, `^i# include<Esc>j`, `q`
 G + o + "ap 	    # go to end of file + create new line + paste/put the contents of the `a` register
 0 + "ay$	    # got to the first character of a line + yank it till the end into the register `a` 
 
-# Misc
-:o [file.txt]                   # open a specific file
-:saveas [file.txt]              # save file as
-:clo, :close, CTRL-W_c          # close the current window
+# Appending to an existing macro
+"ap		    # paste/put the current macro (to see what it currently is doing)
+qA		    # to append to the `a` register use the uppercase letter `A`
+"aY		    # creates a register `a` with the current line yanked
+"AY		    # appends to the existing register `a` and appends the current line to it with yank line command
+
+# Find & Replace (substitution)
+:s/foo/bar	    		# replace string `foo` with `bar` on a single line for first occurance only
+:s/foo/bar/g	    		# replace strings `foo` with `bar` on a single line for all occurances
+:1-3s/foo/bar	    		# replace strings `foo` with `bar` on lines 1 to 3
+:%s/foo/bar	    		# replace string `foo` with `bar` on all lines for first occurance only
+:%s/foo/bar/g	    		# replace strings `foo` with `bar` on all lines for all occurances
+:%s/foo/bar/c	    		# confirm before replacing string on all lines for first occurance only
+:%s/foo/bar/gc	    		# confirm before replacing strings on all lines for all occurances
+				# prompt commands: [y]=Yes, [n]=No, [a]=All, [q]=Quit, [l]=Last; make this change and then quit, 
+				# [CTRL-E]=Scroll up, [CTRL-Y]=Scroll down (just to view more code really)
+:s/^foo/bar/			# replace string `foo` with `bar` when `foo` is at the start of a line
+:s/foo$/bar/			# replace string `foo` with `bar` when `foo` is at the end of a line
+:s/d.com\/1/d.com\/2		# replace slashes by prepending a backslash
+:1,5s/foo/bar/g			# replace string `foo` with `bar` on line 1 to 5 for the first occurances only
+:45s/foo/bar			# replace string `foo` with `bar` on line 45 for the first occurance only
+:.,$s/foo/bar			# replace string `foo` with `bar` on the current line `.` till the last line of the file `$`
+:10,$s/foo/bar			# replace string `foo` with `bar` from line 10 till the last line of the file
+:?^<h2>?,/^<h1>/s/foo/bar/g 	# replace `foo` with `bar` between the headings `h2` and `h1`
+:?^<h2>?+1,/^<h1>/-1s/foo/bar/g # replace `foo` with `bar` between the headings with offset lines (1 line below h2 and 1 line above h1)
+:.+3,$-5s/foo/bar/g		# range with an offset of 3 lines below current line and 5 above the last line of the file
+:`t,`bs/foo/bar/g		# range with an offset from the mark `t` (top) and mark `b` (bottom)
+SHIFT-v + :s/foo/bar/g		# replace string `foo` with `bar` within the selected block 
+5:				# this will result in `:.,.+4` which allows you to execute the command on the current line and 4 below
+:g+^//+s/foo/bar/g		# replace `foo` with `bar` in all comments (lines that start with `//` characters)
+
+# Opening, closing, writing files
+:o [file.txt]           # open a specific file
+:saveas [file.txt]      # save file as
+:.write otherfile	# write the current line to `otherfile`
 
 # Moving around (positioning the cursor at the correct place in the file)
 w           # move cursor to the start of the next word
@@ -128,6 +160,9 @@ V	  # starts VISUAL mode and selects the whole line
 CTRL-V	  # starts VISUAL mode in "vertical" mannar (block selection)
 v_o	  # position cursor at the opposite location of the selection vertically (top/bottom)
 v_O	  # position cursor at the opposite location of the selection horizontally (left/right) (on the same line)
+v_I	  # insert text left of the block selection
+v_A	  # append text right of the block selection
+v_$A	  # append text at the end of each line within the block selection (including short lines)
 p	  # paste/put back text that was previously deleted with for instance commands like: `d` or `x`
 P	  # same as `p` but puts the text before the cursor
 "*p	 "# paste/put text from the clipboard back into the text
@@ -135,8 +170,6 @@ xp	  # swap 2 characters around e.g: `teh` becomes `the` when cursor is on `e`
 daw	  # deletes a word (Delete A Word)
 cis	  # change a whole sentence (Change Inner Sentence)
 cas	  # same as `cis` but includes the white space after the sentence
-
-@TODO chapter *04.9* Replace mode
 
 # Searching and search patterns
 /	    # search for a specific word `.*[]^%/\?~$` have special meanings, if you want to use them in a search prepend them with a `\`
