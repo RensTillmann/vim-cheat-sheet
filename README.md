@@ -214,6 +214,11 @@ O         # create a new empty line above the cursor and puts vim in INSERT mode
 J         # remove line break at end of current line (join 2 lines together)
 u         # undo last change
 U         # undo line (undoes all the changes made on the last line that was editied)
+gUw	  # convert word to UPPERCASE
+guw	  # convert word to lowercase
+guu	  # convert line to lowercase
+gUU	  # convert line to uppercase
+g~~	  # toggle line to lowercase/UPPERCASE
 CTRL-R    # redo last change
 
 # Reading and writing part of a file
