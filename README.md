@@ -216,6 +216,14 @@ u         # undo last change
 U         # undo line (undoes all the changes made on the last line that was editied)
 CTRL-R    # redo last change
 
+# Reading and writing part of a file
+:r[ead] filename.txt	# insert the text of the file one line below the cursor
+:$r filename.txt	# insert the text of the file at the end of the file
+:0r filename.txt	# insert the text of the file at the top of the file
+:.,$w filename.txt	# writes the lines from the cursor until the end of the document into the file
+:.write filename.txt	# write the current line to a new file
+:.write >>filename.txt	# append the current line to the end of an existing file
+
 # Useful configuration/settings for Vim
 :set number 		# display a line number in front of every line
 :set scrolloff=20 	# keeps a few lines of context around the cursor top/bottom
