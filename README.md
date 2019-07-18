@@ -41,6 +41,21 @@ Ctrl+w _: 		# change height to maximum possible
 Ctrl+w |: 		# change width of current window e.g `50 CTRL-w |`
 Ctrl+w =:		# share same width and height for all windows (equalize)
 
+# Recovering from a crash
+vim -r filename.txt		# read the swap file (and maybe bits and pieces of the original file)
+vim -r ""			# in case you were editing without a file name (you must be in the correct directory though)
+:write filename.txt.recovered	# to be on the safe side, write this file under another file name
+:write #
+:diffsp filename.txt 		# use vimdiff to compare the two file to see if everything looks alright
+
+# Using an external program
+:r !ls (Unix)		# read the contents of the current directory into the file
+:r !dir (MS-Windows)	# " "
+:0read !date -u		# inserts the current time and date in UTC format at the top of the file
+:write !wc		# counts word in the current file, output is in LINES - WORDS - CHARACTERS
+CTRL-L			# redraw the screen (in case external program produced an error message)
+
+
 # Recording and playback commands (Macro's)
 q[a-z]		    # start recording a macro e.g `qa`
 q		    # end recording of a macro e.g `qa`, `^i# include<Esc>j`, `q`
@@ -163,6 +178,8 @@ xp	  # swap 2 characters around e.g: `teh` becomes `the` when cursor is on `e`
 daw	  # deletes a word (Delete A Word)
 cis	  # change a whole sentence (Change Inner Sentence)
 cas	  # same as `cis` but includes the white space after the sentence
+!5Gsort	  # sort lines 1 to 5
+!!data	  # print current timestamp to a file
 
 # Visual mode (making big changes)
 V	  # starts VISUAL mode and selects the whole line
@@ -182,6 +199,7 @@ v_>	  # shift/TAB selected text to the right one shift amount `:set shiftwidth=4
 v_<	  # shift/TAB selected text to the left one shift amount `:set shiftwidth=4` (4 spaces)
 v_J	  # join all selected lines together and keep the white space
 v_gJ	  # join all selected lines together but remove the white space
+v_!5Gsort # sort selected block
 
 # Searching and search patterns
 /	    # search for a specific word `.*[]^%/\?~$` have special meanings, if you want to use them in a search prepend them with a `\`
