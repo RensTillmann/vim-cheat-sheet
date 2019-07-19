@@ -13,6 +13,7 @@ tutor fr            # start vim tutorial in French (if available)
 :qa                 # exit vim, unless there are some buffers which have been changed
 :qa                 # exit vim, any changes to buffers are lost
 :wq                 # write the current file and quit
+:x		    # like `:wq` but write only when changes have been made
 ZZ                  # write the current file and quit
 
 # Navigating the help page
@@ -118,6 +119,13 @@ SHIFT-v + :s/foo/bar/g		# replace string `foo` with `bar` within the selected bl
 :wn			# write current file and go to the next one
 :n[ext]			# open next buffer
 :prev			# open previous buffer
+:ls			# list all buffers
+:ls!			# list all buffers (including unlisted buffers)
+:b#			# switch to previous edited buffer
+:b3			# switch to buffer 3
+3 CTRL-^		# switch to buffer 3 in NORMAL mode
+:b fil[ename.txt]	# use <TAB> to autocomplete filenames
+CTRL-D			# list all the possible autocomplete filenames when tabbing through buffers
 
 # Moving around (positioning the cursor at the correct place in the file)
 w           # move cursor to the start of the next word
@@ -264,10 +272,18 @@ CTRL-R    # redo last change
 :.write >>filename.txt	# append the current line to the end of an existing file
 
 # Useful configuration/settings for Vim
-:set number 		# display a line number in front of every line
-:set scrolloff=20 	# keeps a few lines of context around the cursor top/bottom
-:set hlsearch		# enable search highlighting
-:nohlsearch		# temporarily disable highlighting for current search (this will not disable it for next searches)
-:set incsearch		# display the search match while still typing
-:set shiftwidth=4	# set shift amount to 4 spaces
+:set number 			" display a line number in front of every line
+:set scrolloff=20 		" keeps a few lines of context around the cursor top/bottom
+:set hlsearch			" enable search highlighting
+:nohlsearch			" temporarily disable highlighting for current search (this will not disable it for next searches)
+:set incsearch			" display the search match while still typing
+:set shiftwidth=4		" set shift amount to 4 spaces
+:set nocp               	" 'compatible' is not set
+:filetype plugin on     	" plugins are enabled
+:set autowrite			" automatically save any changes made to the buffer before it is hidden 
+:set autoread			" autmoatically update content in vim if file was changes elsewhere
+
+" map CTRL-B to open buffer list and automatically enter :b[waiting for number input] to easily switch 
+" to a different buffer
+:nmap <C-B> :ls<CR>:silent :b<Space>
 `
