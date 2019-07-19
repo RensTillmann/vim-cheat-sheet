@@ -73,7 +73,19 @@ qA		    # to append to the `a` register use the uppercase letter `A`
 "aY		    # creates a register `a` with the current line yanked
 "AY		    # appends to the existing register `a` and appends the current line to it with yank line command
 
+# Find & Replace accross many files (recursively)
+vim			# open up vim
+:n **/*.txt		# open all the files that you require (this opens all files in current working directory)
+qq			# start recording into the `q` register
+:%s/foo/bar/ge		# do the replacements in the first file, `e` flag is recommended (doesn't return an error if no match was found)
+:wn			# write this file and move to the next one
+q			# stop recording
+@q			# execute the register (verify it doesn't produce any errors)
+999@q			# execute 999 times
+
 # Find & Replace (substitution)
+:%s/foo/bar/gc	    		# most used replace method
+:%s/\<foo\>/bar/gc	    	# explicit start with and end with `foo`
 :s/foo/bar	    		# replace string `foo` with `bar` on a single line for first occurance only
 :s/foo/bar/g	    		# replace strings `foo` with `bar` on a single line for all occurances
 :1-3s/foo/bar	    		# replace strings `foo` with `bar` on lines 1 to 3
@@ -102,6 +114,10 @@ SHIFT-v + :s/foo/bar/g		# replace string `foo` with `bar` within the selected bl
 :o [file.txt]           # open a specific file
 :saveas [file.txt]      # save file as
 :.write otherfile	# write the current line to `otherfile`
+:n **/*.txt		# open all files that end with .txt in the current working directory (project folder)
+:wn			# write current file and go to the next one
+:n[ext]			# open next buffer
+:prev			# open previous buffer
 
 # Moving around (positioning the cursor at the correct place in the file)
 w           # move cursor to the start of the next word
