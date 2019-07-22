@@ -1,7 +1,54 @@
 # vim-cheat-sheet
 >This cheat sheet is based of the Vim :help page. I created it purely for my own personal reference.
 
-```bash
+### Most used commands:
+
+
+#### Grepping
+
+`:vimgrep/foobar/ *` search for foobar in current working directory
+
+
+#### Quickfix navigation
+
+`:cope` open
+
+`:ccl` close
+
+`:cn` go to next result in the list
+
+`:cp` go to previous result in the list
+
+`:cdo {cmd}` run command on every item in the list
+
+`:cc` echo the current item
+
+`:cc {nr}` jump to item number and echo it
+
+
+#### Window positioning/resizing/navigation
+
+`Ctrl+W` enter "window command mode"
+
+`Ctrl+W R` rotate windows up/left
+
+`Ctrl+W r` rotate windows down/right
+
+`Ctrl+W L` move window to the far right
+
+`Ctrl+W H` move window to the far left
+
+`Ctrl+W J` move window to the very bottom
+
+`Ctrl+W K` move window to the very top
+
+`Ctrl W x` OR `Ctrl W + Ctrl x` swap current window with closest window to the right
+
+
+
+### All Commands:
+
+```
 # Basics
 vi                  # open the editor
 :h                  # open help page/documentation
