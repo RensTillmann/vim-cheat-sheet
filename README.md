@@ -1,10 +1,17 @@
-# vim-cheat-sheet
->This cheat sheet is based of the Vim :help page. I created it purely for my own personal reference.
+### Index
 
-### Most used commands:
+- [Grepping (search)](#grepping-search)
+- [Quickfix navigation](#quickfix-navigation)
+- [Editing files](#editing-files)
+- [Browsing through buffers](#browsing-through-buffers)
+- [Window navigation](#window-navigation)
+- [Window reposition](#window-reposition)
+- [Window resizing](#window-resizing)
+- [All Commands](#all-commands)
+- [Useful config](#useful-config)
 
 
-#### Grepping
+#### Grepping (search)
 
 `:vimgrep/foobar/ *` search for foobar in current working directory
 
@@ -26,7 +33,50 @@
 `:cc {nr}` jump to item number and echo it
 
 
-#### Window positioning/resizing/navigation
+#### Editing files
+
+`:o foobar.txt` open a specific file
+
+`:saveas foobar.txt` save file as
+
+`:.write bar.txt` write the current line to **bar.txt**
+
+`:n **/*.txt` open all files that end with .txt in the current working directory (project folder)
+
+`:wn` write current file and go to the next one
+
+
+#### Browsing through buffers
+
+`:n` open next buffer
+
+`:prev` open previous buffer
+
+`:ls` list all buffers
+
+`:ls!` list all buffers (including unlisted buffers)
+
+`:b#` switch to previous edited buffer
+
+`:b3` switch to buffer 3
+
+`3 CTRL-^` switch to buffer 3 in NORMAL mode
+
+`:b fil[ename.txt]` use **TAB** to autocomplete filenames
+
+`CTRL-D` list all the possible autocomplete filenames when tabbing through buffers
+	
+	
+#### Window navigation
+
+`:clo`, `:close`, `Ctrl-W c` close the current window
+
+`:q` quit the current window, if it is the last window also exit vim
+
+`:helpc` close on help window, if there is one
+
+
+#### Window reposition
 
 `Ctrl+W` enter "window command mode"
 
@@ -43,6 +93,23 @@
 `Ctrl+W K` move window to the very top
 
 `Ctrl W x` OR `Ctrl W + Ctrl x` swap current window with closest window to the right
+
+
+#### Window resizing
+
+`Ctrl+w +` increase height e.g **20 CTRL-w +**
+
+`Ctrl+w -` decrease height e.g **20 CTRL-w -**
+
+`Ctrl+w >` increase width e.g **20 CTRL-w >**
+
+`Ctrl+w <` decrease width e.g **20 CTRL-w <**
+
+`Ctrl+w _` change height to maximum possible
+
+`Ctrl+w |` change width of current window e.g **50 CTRL-w |**
+
+`Ctrl+w =` share same width and height for all windows (equalize)
 
 
 
@@ -317,20 +384,56 @@ CTRL-R    # redo last change
 :.,$w filename.txt	# writes the lines from the cursor until the end of the document into the file
 :.write filename.txt	# write the current line to a new file
 :.write >>filename.txt	# append the current line to the end of an existing file
+```
 
-# Useful configuration/settings for Vim
-:set number 			" display a line number in front of every line
-:set scrolloff=20 		" keeps a few lines of context around the cursor top/bottom
-:set hlsearch			" enable search highlighting
-:nohlsearch			" temporarily disable highlighting for current search (this will not disable it for next searches)
-:set incsearch			" display the search match while still typing
-:set shiftwidth=4		" set shift amount to 4 spaces
-:set nocp               	" 'compatible' is not set
-:filetype plugin on     	" plugins are enabled
-:set autowrite			" automatically save any changes made to the buffer before it is hidden 
-:set autoread			" autmoatically update content in vim if file was changes elsewhere
+#### Useful config
 
-" map CTRL-B to open buffer list and automatically enter :b[waiting for number input] to easily switch 
-" to a different buffer
-:nmap <C-B> :ls<CR>:silent :b<Space>
-`
+`set nocp` 'compatible' is not set
+
+`set nocompatible wildmenu`
+
+`filetype plugin on` enable plugins (for netrw)
+
+`set path+=**` allow vim to search within current working directory by default
+
+`set wildmenu` allow **TAB** autocompletion
+
+`set wildmode=full`
+
+`set wildignorecase`
+
+`set wildignore=.git` skip .git folder
+
+`set tags=./tags,tags;$HOME` when using ctags define where to look for the tags
+
+`set number` display a line number in front of every line
+
+`set scrolloff=20` keeps a few lines of context around the cursor top/bottom
+
+`set hls` enable search highlighting
+
+`:nohls` temporarily disable highlighting for current search (this will not disable it for next searches)
+
+`set incsearch` display the search match while still typing
+
+`set shiftwidth=4` set shift amount to 4 spaces
+
+`set autowrite` automatically save any changes made to the buffer before it is hidden 
+
+`set autoread` autmoatically update content in vim if file was changes elsewhere
+
+`set t_Co=256` use 256 bit colors
+
+`set termguicolors`
+
+`syntax on` enable syntax
+
+`let mapleader = ","` set leader key to **,**
+
+`nnoremap <leader>f :find *` fuzzy find files by name
+
+`nnoremap <leader>s :sfind *` fuzzy find files by name open in horizontal split window
+
+`nnoremap <leader>v :vert sfind *` fuzzy find files by name open is vertical split window
+
+`:nmap <C-B> :ls<CR>:silent :b<Space>` map Ctrl-b to open buffer listG
