@@ -1,5 +1,8 @@
+> This cheat-sheet is for my personal use only
+
 ### Index
 
+- [Vmail (gmail)](#vmail-gmail)
 - [Grepping (search)](#grepping-search)
 - [Quickfix navigation](#quickfix-navigation)
 - [Editing files](#editing-files)
@@ -9,6 +12,68 @@
 - [Window resizing](#window-resizing)
 - [All Commands](#all-commands)
 - [Useful config](#useful-config)
+
+#### Vmail (Gmail)
+
+**+** [Unread]
+
+`vmail` open Vmail
+
+`vmail -g` generate vmail-contacts.txt from last 500 send emails (for autocompletion)
+
+`,c` compose a new email
+
+`,r` reply to a message
+
+`,a` reply all
+
+`,f` forward a message
+
+`Ctrl-x u` invoke autocompletion (when entering TO: header when composing new email)
+
+`Ctrl-n`, `Ctrl-p`, `Ctrl-u` to move through the automplete list
+
+`<Space>`, `,` to continue typing
+
+`,b` move selected message to different mailbox
+
+`<Enter>` open email message and jump to the message window
+
+`<Space>` toggle full screen
+
+`Ctrl-w o` toggle full screen
+
+`Ctrl-j` show next message
+
+`Ctrl-k` show prev message
+
+`<Enter>` when inside email message jump back to list
+
+`l` look at the email message but do not jump to it (quickly look/inspect)
+
+`,R` view raw RFC822 version of a message
+
+`,*`, `,8` star a message (copies it to the **starred** mailbox)
+
+`,#`, `,3` delete a message (puts it in the **trash** mailbox, deleting messages from trash deletes it permanently)
+
+`,e` archive a message (moves it to the **all** mailbox)
+
+`,!`, `,1` mark as spam (moves it to the **spam** mailbox)
+
+`U` mark as unread
+
+`I` mark as read
+
+`,m` switch mailboxes
+
+`Ctrl-p`, `Ctrl-n` move up and down in the mailbox list
+
+`Ctrl-e` close the mailbox list
+
+`u`, `,u` check for new messages (**u** in message list, **,u** in message window)
+
+`,B` copy selected message to different mailbox
 
 
 #### Grepping (search)
