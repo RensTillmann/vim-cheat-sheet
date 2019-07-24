@@ -15,13 +15,25 @@
 
 #### Vmail (Gmail)
 
-**+** [Unread]
-
 `vmail` open Vmail
 
-`vmail -g` generate vmail-contacts.txt from last 500 send emails (for autocompletion)
+`,qq`, `:qall!` quit Vmail
 
-`,c` compose a new email
+`,q'` go back to message list
+
+`,vs` send the email (when in normal mode and in composition window)
+
+`Ctrl-l` redraw screen
+
+`,o` open URL in browser, `,O` open all URL's in browser, `gf`, `Ctrl-w f` open URL in a split window.
+
+`,A` download attachments
+
+`:VMAttach [filename-or-path]` to insert an attachment
+
+`:w my_draft_filename.txt` save draft email
+
+`:e my_draft_filename.txt` open draft email
 
 `,r` reply to a message
 
@@ -35,7 +47,6 @@
 
 `<Space>`, `,` to continue typing
 
-`,b` move selected message to different mailbox
 
 `<Enter>` open email message and jump to the message window
 
@@ -74,6 +85,38 @@
 `u`, `,u` check for new messages (**u** in message list, **,u** in message window)
 
 `,B` copy selected message to different mailbox
+
+`vmail -g` generate vmail-contacts.txt from last 500 send emails (for autocompletion)
+
+`,c` compose a new email
+
+`,b` move selected message to different mailbox
+
+`,vp` from the message list prints (appends) the text content of all the selected messages to a file.
+
+`vmailsend < my_message.txt` send from the command line 
+
+**Vmail search queries**
+
+`,s` start search
+
+`all` search through everything
+
+`from thematrix.com` all messages from thematrix.com domain
+
+`from barackobama@whitehouse.gov` all messages from this person
+
+`from barackobama` you can also omit the host part of the email address
+
+`cc "David Fisher"` search by the full name, first name, or last name associated
+
+`subject "unix philosophy"` subject field search
+
+`body "unix philosophy"` message body search
+
+`before 30-nov-2010 since 1-nov-2010 from prx.org` date range and multiple conditions
+
+`since 1-nov-2010 larger 10000` search for all messages since 1-nov-2010 larger than 10k
 
 
 #### Grepping (search)
